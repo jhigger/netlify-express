@@ -1,5 +1,6 @@
 const express = require('express');
 const serverless = require('serverless-http');
+const cron = require('node-cron');
 
 const app = express();
 const router = express.Router();
@@ -15,4 +16,14 @@ router.get('/jhigger', (req, res) => {
 app.use('/', router);
 
 console.log('log test');
+cron.schedule(
+	'* * * * *',
+	() => {
+		console.log('cron job running every minute');
+	},
+	{
+		timezone: 'Asia/Manila'
+	}
+);
+
 module.exports.handler = serverless(app);
