@@ -14,4 +14,5 @@ router.get('/jhigger', (req, res) => {
 
 app.use('/', router);
 
+console.log('log test');
 module.exports.handler = serverless(app);
